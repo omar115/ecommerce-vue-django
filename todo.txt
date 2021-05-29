@@ -8,3 +8,10 @@
     - stripe
 
 3. setup django project
+
+4. setup frontend
+    - install all modules
+
+5. design the frontend
+
+6. Create Model, Serialize and implement View with URLs
