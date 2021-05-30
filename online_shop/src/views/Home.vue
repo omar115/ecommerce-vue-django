@@ -3,30 +3,46 @@
     <section class="hero is-medium is-dark mb-6">
         <div class="hero-body has-text-centered">
             <p class="title mb-6">
-                Welcome to Odileon Online Shop
+                Welcome to Odileon Shop
             </p>
             <p class="subtitle">
-                The best online store available in front of you
+                The best Online Shopping Site infront of you
             </p>
         </div>
     </section>
 
     <div class="columns is-multiline">
       <div class="column is-12">
-          <h2 class="is-size-2 has-text-centered"> New Arrivals</h2>
+          <h2 class="is-size-2 has-text-centered">Latest products</h2>
       </div>
 
-      <ProductBox 
-        v-for="product in latestProducts"
-        v-bind:key="product.id"
-        v-bind:product="product" />
+      <div 
+      class="column is-3"
+      v-for="product in latestProducts" 
+      v-bind:key="product.id"
+      >
+        <div class="box">
+          <figure class="image mb-4">
+            <img :src="product.get_thumbnail">
+          </figure>
+          <h3 class="is-size-4">{{ product.name }} </h3>
+          <p class="is-size-6 has-text-grey">${{ product.price }}</p>
+
+          View Details
+        </div>
+      </div>
+
     </div>
+  
+  
+  
   </div>
+
 </template>
 
 <script>
 import axios from 'axios'
-// import ProductBox from '@/components/ProductBox'
+
 export default {
   name: 'Home',
   data() {
@@ -34,36 +50,39 @@ export default {
       latestProducts: []
     }
   },
+
   components: {
-    // ProductBox
+    
   },
+
   mounted() {
     this.getLatestProducts()
+
     // document.title = 'Home | Djackets'
   },
+
   methods: {
     getLatestProducts() {
-      // this.$store.commit('setIsLoading', true)
-      // await axios
       axios
-        .get('/api/v1/latest-products/')
+      .get('/api/v1/latest-products/')
         .then(response => {
           this.latestProducts = response.data
         })
         .catch(error => {
           console.log(error)
         })
-      // this.$store.commit('setIsLoading', false)
-    // }
     }
   }
+
 }
+
 </script>
+
 
 <style scoped>
   .image {
-    margin-top: -1.25rem;
     margin-left: -1.25rem;
     margin-right: -1.25rem;
+    margin-top: -1.25rem;
   }
 </style>
