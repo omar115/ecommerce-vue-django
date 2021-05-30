@@ -56,7 +56,7 @@ export default {
       // this.$store.commit('setIsLoading', false)
     // }
     }
-  // }
+  }
 }
 </script>
 
